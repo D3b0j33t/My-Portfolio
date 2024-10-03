@@ -89,6 +89,12 @@ function sendMessage(event) {
     const mobile = document.getElementById('mobile').value;
     const message = document.getElementById('message').value;
 
+    const mobileRegex = /^[0-9]{10}$/;
+    if (!mobileRegex.test(mobile)) {
+        alert("Please give a valid Contact Number");
+        return;
+    }
+    
     const encodedMessage = encodeURIComponent(`Name: ${name}\nMobile: ${mobile}\nMessage: ${message}`);
     
     const phoneNumber = '+919835418245';
