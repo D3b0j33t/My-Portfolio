@@ -118,7 +118,11 @@
                 updates on mindset development and tips. If you have any feedback or
                 suggestions, please let me know. I'd love to hear from you.
             </p>
-            <a href="https://wa.me/+919835418245?text=Can%20you%20Guide%20me%20I%20came%20through%20your%20portfolio" class="btn">Whatsapp Me</a>
+            <p>
+                I'm always here to help you with any questions or concerns you might have.
+                If you have any questions about web development, feel free to ask. I'm here to help!
+            </p>
+            
         </div>
     </section>
 
@@ -261,19 +265,18 @@
     <section class="contact" id="contact">
         <h2 class="heading">Contact <span>Me!</span></h2>
 
-        <form id="contact-form">
+        <form id="contact-form" onsubmit="sendMessage(event)">
             <div class="input-box">
                 <input type="text" id="name" placeholder="Full Name" required>
-                <input type="email" id="email" placeholder="Email Address" required>
             </div>
             <div class="input-box">
                 <input type="number" id="mobile" placeholder="Mobile Number" required>
-                <input type="text" id="subject" placeholder="Email Subject" required>
             </div>
             <textarea id="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
             <input type="submit" value="Send Message" class="btn">
         </form>
     </section>
+
 
     <!-- footer design -->
     <footer class="footer">
@@ -295,36 +298,6 @@
 
     <!-- custom js -->
     <script src="js/script.js"></script>
-
-    <!-- contact mailbox -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-    
-            // Collect form data
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const mobile = document.getElementById('mobile').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-    
-            // Send email using EmailJS
-            emailjs.send('service_2g9hm6o', 'template_t0auj7w', {
-                from_name: name,
-                from_email: email,
-                subject: subject,
-                mobile_number: mobile,
-                message: message,
-            })
-            .then(function(response) {
-                alert('Message Sent Successfully!');
-                document.getElementById('contact-form').reset();
-            }, function(error) {
-                alert('Failed to send message. Please try again.');
-            });
-        });
-    </script> -->
     
 </body>
 

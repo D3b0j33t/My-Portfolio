@@ -79,3 +79,21 @@ ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
 ScrollReveal().reveal('.home-img img, .services-container, .portfolio-box, .testimonial-wrapper, .contact form', { origin: 'bottom' });
 ScrollReveal().reveal('.home-content h1, .about-img img', { origin: 'left' });
 ScrollReveal().reveal('.home-content h3, .home-content p, .about-content', { origin: 'right' });
+
+
+/*========== whatsapp message ==========*/
+function sendMessage(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const mobile = document.getElementById('mobile').value;
+    const message = document.getElementById('message').value;
+
+    const encodedMessage = encodeURIComponent(`Name: ${name}\nMobile: ${mobile}\nMessage: ${message}`);
+    
+    const phoneNumber = '+919835418245';
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappURL, '_blank');
+    document.getElementById('contact-form').reset();
+}
