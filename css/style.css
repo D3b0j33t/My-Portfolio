@@ -208,27 +208,18 @@ section {
 }
 
 @keyframes professionRotate {
-
-    0%,
-    20% {
+    0%, 20% {
         transform: rotate(0deg);
     }
-
-    25%,
-    45% {
+    25%, 45% {
         transform: rotate(-90deg);
     }
-
-    50%,
-    70% {
+    50%, 70% {
         transform: rotate(-180deg);
     }
-
-    75%,
-    95% {
+    75%, 95% {
         transform: rotate(-270deg);
     }
-
     100% {
         transform: rotate(-360deg);
     }
@@ -239,16 +230,20 @@ section {
     left: 0;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     color: var(--main-color);
-    transform: rotate(calc(360deg / 4 * var(--i)));
-    transform-origin: 384px;
+    transform: rotate(calc(360deg / 4 * var(--i))) translateX(-50%);
+    transform-origin: 50% 50%;
     background: var(--bg-color);
-    padding: 13px 0;
+    padding: 20px;
+    width: 200px; /* Adjusted for better symmetry */
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add some shadow for better definition */
 }
 
 .home .profession-box .profession:nth-child(1) i {
-    margin-right: 15px;
+    margin-bottom: 10px;
 }
 
 .home .profession-box .profession:nth-child(2),
@@ -257,11 +252,11 @@ section {
 }
 
 .home .profession i {
-    font-size: 2.8rem;
+    font-size: 2.5rem; /* Slightly reduced for better fit */
 }
 
 .home .profession h3 {
-    font-size: 2.2rem;
+    font-size: 1.8rem; /* Adjusted for balance */
     line-height: 1;
     font-weight: 600;
 }
