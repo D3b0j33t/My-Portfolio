@@ -230,16 +230,14 @@ section {
     left: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     color: var(--main-color);
-    transform: rotate(calc(360deg / 4 * var(--i))) translateX(-50%);
-    transform-origin: 50% 50%;
+    transform: rotate(calc(360deg / 4 * var(--i))) translateY(-50%);
+    transform-origin: 384px center;
     background: var(--bg-color);
-    padding: 20px;
-    width: 200px; /* Adjusted for better symmetry */
+    padding: 13px 0;
+    width: 160px; /* Ensure the boxes have consistent width */
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add some shadow for better definition */
 }
 
 .home .profession-box .profession:nth-child(1) i {
@@ -252,11 +250,11 @@ section {
 }
 
 .home .profession i {
-    font-size: 2.5rem; /* Slightly reduced for better fit */
+    font-size: 2.8rem;
 }
 
 .home .profession h3 {
-    font-size: 1.8rem; /* Adjusted for balance */
+    font-size: 2.2rem;
     line-height: 1;
     font-weight: 600;
 }
