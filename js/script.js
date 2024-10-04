@@ -103,3 +103,14 @@ function sendMessage(event) {
     window.open(whatsappURL, '_blank');
     document.getElementById('contact-form').reset();
 }
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const music = document.getElementById('background-music');
+             
+    music.play().catch(() => {
+        document.body.addEventListener('click', () => {
+            music.play();
+        });
+    });
+});
