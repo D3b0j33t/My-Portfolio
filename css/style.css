@@ -178,6 +178,11 @@ section {
     transition: .5s ease;
 }
 
+.btn i {
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
 .btn:hover {
     background: transparent;
     color: var(--main-color);
