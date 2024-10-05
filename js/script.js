@@ -95,7 +95,7 @@ function sendMessage(event) {
         return;
     }
     
-    const encodedMessage = encodeURIComponent(`I'm ${name}\nContact Number: ${mobile}\n\nSir\n\t${message}`);
+    const encodedMessage = encodeURIComponent(`\nSir\n\tI'm ${name}. ${message}\n\nBest Regards,\n${name}\nContact Number: ${mobile}`);
     
     const phoneNumber = '+919835418245';
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
