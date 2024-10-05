@@ -38,8 +38,6 @@ html {
 body {
     background: var(--bg-color);
     color: var(--text-color);
-    user-select: none;
-    -webkit-user-select: none;
 }
 
 .header {
