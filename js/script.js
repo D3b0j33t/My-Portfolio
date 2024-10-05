@@ -114,3 +114,37 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// Disable right-click context menu
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    alert('You cannot do that as this site has robust security features');
+});
+
+// Disable keyboard shortcuts (Ctrl+P, Ctrl+S, Ctrl+Shift+I, etc.)
+document.addEventListener('keydown', function(e) {
+    // Disable F12 (Developer Tools)
+    if (e.key === "F12") {
+        e.preventDefault();
+    }
+
+    // Disable Ctrl+Shift+I / Ctrl+Shift+C (Inspect Elements)
+    if ((e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "C")) || 
+        (e.ctrlKey && e.key === "U")) { // Disable Ctrl+U (View Source)
+        e.preventDefault();
+    }
+
+    // Disable Ctrl+S (Save Page) and Ctrl+P (Print Page)
+    if (e.ctrlKey && (e.key === "S" || e.key === "P")) {
+        e.preventDefault();
+    }
+});
+
+// Disable screenshot (This is not foolproof)
+document.addEventListener('keydown', function(e) {
+    // Disable PrintScreen button
+    if (e.key === "PrintScreen") {
+        alert("You can't take Screenshots in this site");
+        e.preventDefault();
+    }
+});
