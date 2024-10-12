@@ -18,10 +18,10 @@ document.addEventListener('keydown', function(e) {
         alert('Inspecting elements is disabled.');
     }
 
-    // Disable Ctrl+S (Save Page), Ctrl+P (Print Page), Ctrl+U (View Source)
-    if ((e.ctrlKey || e.metaKey) && (e.code === "KeyS" || e.code === "KeyP" || e.code === "KeyU")) {
+    // Disable Ctrl+S (Save Page), Ctrl+P (Print Page), Ctrl+U (View Source), Ctrl+C (Copy Source)
+    if ((e.ctrlKey || e.metaKey) && (e.code === "KeyS" || e.code === "KeyP" || e.code === "KeyU" || e.code === "KeyC")) {
         e.preventDefault();
-        alert('Saving, printing, and viewing source are disabled.');
+        alert('Copying, Saving, printing, and viewing source are disabled.');
     }
 
     // Disable PrintScreen
