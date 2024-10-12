@@ -20,6 +20,8 @@
             --font-color: #ffffff;
             --font-family: 'Poppins', sans-serif;
             --card-hover-transform: translateY(-10px);
+            --card-height: 300px;
+            --card-width: calc(var(--card-height) / 1.5);
         }
 
         /* General Reset */
@@ -102,23 +104,109 @@
             animation-delay: 0.8s;
         }
 
+        /* Card Styling with Hover Effect */
         .card {
+            width: var(--card-width);
+            height: var(--card-height);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding: 0 36px;
+            perspective: 2500px;
+            margin: 0 30px;
             background-color: #252525;
-            width: 280px;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
 
         .card:hover {
-            transform: var(--card-hover-transform);
+            transform: translateY(-10px);
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
         }
 
-        .card img {
+        .cover-image {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .wrapper {
+            transition: all 0.5s;
+            position: absolute;
+            width: 100%;
+            z-index: -1;
+        }
+
+        .card:hover .wrapper {
+            transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+            box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+        }
+
+        .wrapper::before,
+        .wrapper::after {
+            content: "";
+            opacity: 0;
+            width: 100%;
+            height: 80px;
+            transition: all 0.5s;
+            position: absolute;
+            left: 0;
+        }
+
+        .wrapper::before {
+            top: 0;
+            height: 100%;
+            background-image: linear-gradient(
+                to top,
+                transparent 46%,
+                rgba(12, 13, 19, 0.5) 68%,
+                rgba(12, 13, 19) 97%
+            );
+        }
+
+        .wrapper::after {
+            bottom: 0;
+            opacity: 1;
+            background-image: linear-gradient(
+                to bottom,
+                transparent 46%,
+                rgba(12, 13, 19, 0.5) 68%,
+                rgba(12, 13, 19) 97%
+            );
+        }
+
+        .card:hover .wrapper::before,
+        .card:hover .wrapper::after {
+            opacity: 1;
+        }
+
+        .card:hover .wrapper::after {
+            height: 120px;
+        }
+
+        .title {
+            width: 100%;
+            transition: transform 0.5s;
+        }
+
+        .card:hover .title {
+            transform: translate3d(0%, -50px, 100px);
+        }
+
+        .character {
+            width: 100%;
+            opacity: 0;
+            transition: all 0.5s;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .card:hover .character {
+            opacity: 1;
+            transform: translate3d(0%, -30%, 100px);
         }
 
         /* Animations */
@@ -179,10 +267,18 @@
     <!-- Card Section -->
     <div class="card-container">
         <div class="card">
-            <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-cover.jpg" alt="Dark Rider Cover">
+            <div class="wrapper">
+                <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-cover.jpg" class="cover-image" />
+            </div>
+            <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-title.png" class="title" />
+            <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-character.webp" class="character" />
         </div>
         <div class="card">
-            <img src="https://ggayane.github.io/css-experiments/cards/force_mage-cover.jpg" alt="Force Mage Cover">
+            <div class="wrapper">
+                <img src="https://ggayane.github.io/css-experiments/cards/force_mage-cover.jpg" class="cover-image" />
+            </div>
+            <img src="https://ggayane.github.io/css-experiments/cards/force_mage-title.png" class="title" />
+            <img src="https://ggayane.github.io/css-experiments/cards/force_mage-character.webp" class="character" />
         </div>
     </div>
 
