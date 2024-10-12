@@ -7,242 +7,184 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     
-    <title>Urgent: Enable JavaScript</title>
+    <title>Enable JavaScript</title>
     <link rel="icon" href="images/favicon.png" type="image/png">
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Squada+One'>
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:500,600'>
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
+        /* Root Variables */
         :root {
-            --card-height: 300px;
-            --card-width: calc(var(--card-height) / 1.5);
+            --primary-color: #ff6b6b;
+            --secondary-color: #f0f0f0;
+            --background-color: #1a1a1a;
+            --font-color: #ffffff;
+            --font-family: 'Poppins', sans-serif;
+            --card-hover-transform: translateY(-10px);
         }
-        
+
+        /* General Reset */
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-        }
-
         body {
-            background-color: #1a1a1a;
-            background-image: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-            color: #f1f1f1;
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--font-color);
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            text-align: center;
+            overflow: hidden;
         }
 
         h1 {
-            color: #ecdb35;
-            font-family: 'Squada One', cursive;
-            text-transform: uppercase;
-            font-size: 72px;
-            text-shadow: 0 3px red;
-            margin: 0;
-            animation: zoomin 1s ease-in-out;
-            animation-delay: 0.5s;
-            animation-fill-mode: forwards;
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: fadeInDown 0.8s forwards ease-out;
         }
 
         p {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 26px;
-            letter-spacing: 1px;
-            margin: 1em 0;
+            font-size: 20px;
+            margin-bottom: 30px;
             opacity: 0;
-            animation: fadedown .5s ease-in-out;
-            animation-delay: 1s;
-            animation-fill-mode: forwards;
-            color: #ffffff;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards ease-out;
+            animation-delay: 0.4s;
         }
 
-        p strong {
-            color: #ff5722;
-            font-size: 28px;
-        }
-
+        /* Button Styles */
         .buttons {
             display: flex;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 15px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s forwards ease-out;
+            animation-delay: 0.6s;
         }
 
         a {
-            display: inline-block;
             padding: 15px 30px;
-            background-color: #ff5722;
-            color: #ffffff;
+            background-color: var(--primary-color);
+            color: var(--font-color);
+            font-weight: 600;
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            font-size: 20px;
-            transition: background-color 0.3s, transform 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
         }
 
         a:hover {
-            background-color: #e64a19;
-            transform: scale(1.05);
+            transform: var(--card-hover-transform);
+            box-shadow: 0 12px 30px rgba(255, 107, 107, 0.5);
         }
 
         .go-back {
-            padding: 10px 20px;
-            background-color: #ecdb35;
-            color: #101922;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: background-color 0.3s, transform 0.3s;
+            background-color: #4caf50;
         }
 
-        .go-back:hover {
-            background-color: #c3aa1f;
-            transform: scale(1.05);
-        }
-
-        @keyframes zoomin {
-            0% {
-                transform: scale(0);
-            }
-            90% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        @keyframes fadedown {
-            0% {
-                opacity: 0;
-                transform: translate3d(0, -10px, 0);
-            }
-            100% {
-                opacity: 1;
-                transform: translate3d(0, 0, 0);
-            }
+        /* Card Section */
+        .card-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 50px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1.2s forwards ease-out;
+            animation-delay: 0.8s;
         }
 
         .card {
-            width: var(--card-width);
-            height: var(--card-height);
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            padding: 0 36px;
-            perspective: 2500px;
-            margin: 20px;
+            background-color: #252525;
+            width: 280px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
-        .cover-image {
+        .card:hover {
+            transform: var(--card-hover-transform);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
+        }
+
+        .card img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
         }
 
-        .wrapper {
-            transition: all 0.5s;
-            position: absolute;
-            width: 100%;
-            z-index: -1;
+        /* Animations */
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .card:hover .wrapper {
-            transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
-            box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
-            -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
-            -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .wrapper::before, .wrapper::after {
-            content: "";
-            opacity: 0;
-            width: 100%;
-            height: 80px;
-            transition: all 0.5s;
-            position: absolute;
-            left: 0;
-        }
+        /* Media Queries */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
 
-        .wrapper::before {
-            top: 0;
-            height: 100%;
-            background-image: linear-gradient(to top, transparent 46%, rgba(12, 13, 19, 0.5) 68%, rgba(12, 13, 19) 97%);
-        }
+            p {
+                font-size: 18px;
+            }
 
-        .wrapper::after {
-            bottom: 0;
-            opacity: 1;
-            background-image: linear-gradient(to bottom, transparent 46%, rgba(12, 13, 19, 0.5) 68%, rgba(12, 13, 19) 97%);
-        }
+            .buttons {
+                flex-direction: column;
+            }
 
-        .card:hover .wrapper::before, .wrapper::after {
-            opacity: 1;
+            .card-container {
+                flex-direction: column;
+                gap: 20px;
+            }
         }
-
-        .card:hover .wrapper::after {
-            height: 120px;
-        }
-
-        .title {
-            width: 100%;
-            transition: transform 0.5s;
-        }
-
-        .card:hover .title {
-            transform: translate3d(0%, -50px, 100px);
-        }
-
-        .character {
-            width: 100%;
-            opacity: 0;
-            transition: all 0.5s;
-            position: absolute;
-            z-index: -1;
-        }
-
-        .card:hover .character {
-            opacity: 1;
-            transform: translate3d(0%, -30%, 100px);
-        }
-
     </style>
 </head>
 <body>
-    <h1>Urgent Action Required!</h1>
-    <p>This site <strong>requires JavaScript</strong> to function properly. <em>Enabling JavaScript is critical for your experience.</em></p>
-    <p>Without it, you are missing out on essential features!</p>
 
-    <!-- Adding buttons section -->
+    <h1>Enable JavaScript!</h1>
+    <p>For the best experience on this site, please enable JavaScript.</p>
+
+    <!-- Buttons Section -->
     <div class="buttons">
-        <a href="https://www.enable-javascript.com/" target="_blank">How to Enable JavaScript</a>
+        <a href="https://www.enable-javascript.com/" target="_blank">How to Enable</a>
         <a href="https://debojeet-bhowmick.netlify.app/" class="go-back">Go Back</a>
     </div>
 
-    <!-- Adding the 3D card hover effect -->
-    <div class="card">
-        <div class="wrapper">
-            <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-cover.jpg" class="cover-image" />
+    <!-- Card Section -->
+    <div class="card-container">
+        <div class="card">
+            <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-cover.jpg" alt="Dark Rider Cover">
         </div>
-        <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-title.png" class="title" />
-        <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-character.webp" class="character" />
+        <div class="card">
+            <img src="https://ggayane.github.io/css-experiments/cards/force_mage-cover.jpg" alt="Force Mage Cover">
+        </div>
     </div>
 
-    <div class="card">
-        <div class="wrapper">
-            <img src="https://ggayane.github.io/css-experiments/cards/force_mage-cover.jpg" class="cover-image" />
-        </div>
-        <img src="https://ggayane.github.io/css-experiments/cards/force_mage-title.png" class="title" />
-        <img src="https://ggayane.github.io/css-experiments/cards/force_mage-character.webp" class="character" />
-    </div>
 </body>
 </html>
