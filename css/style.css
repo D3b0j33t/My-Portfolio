@@ -19,11 +19,6 @@
     --shadow-color: rgba(0, 0, 0, .2);
 }
 
-:root.no-js [data-aos^=fade][data-aos^=fade] {
-	opacity: 1;
-	transform: none;
-}
-
 *::selection {
     background: var(--main-color);
     color: var(--bg-color);
