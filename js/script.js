@@ -58,21 +58,6 @@ function preventScreenshot() {
     }, 3000);
 }
 
-/*========== Watermark Overlay to Deter Screenshots ==========*/
-function addWatermark() {
-    let watermark = document.createElement('div');
-    watermark.style.position = 'fixed';
-    watermark.style.bottom = '10px';
-    watermark.style.right = '10px';
-    watermark.style.fontSize = '20px';
-    watermark.style.color = 'rgba(255, 255, 255, 0.3)';
-    watermark.style.pointerEvents = 'none'; // Prevent interaction
-    watermark.style.zIndex = '9998';
-    watermark.innerText = 'Confidential - No Screenshots Allowed';
-
-    document.body.appendChild(watermark);
-}
-
 // Call the watermark function when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', addWatermark);
 
