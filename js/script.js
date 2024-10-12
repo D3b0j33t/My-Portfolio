@@ -134,8 +134,8 @@ document.addEventListener('keydown', function(e) {
         e.preventDefault();
     }
 
-    // Disable Ctrl+S (Save Page) and Ctrl+P (Print Page)
-    if (e.ctrlKey && (e.key === "S" || e.key === "P")) {
+    // Disable Ctrl+S (Save Page), Ctrl+P (Print Page) and Ctrl+C (Copy Text)
+    if (e.ctrlKey && (e.key === "S" || e.key === "P" || e.key === "C")) {
         e.preventDefault();
     }
 });
