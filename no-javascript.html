@@ -81,6 +81,23 @@
             transform: scale(1.05);
         }
 
+        .go-back {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ecdb35;
+            color: #101922;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .go-back:hover {
+            background-color: #c3aa1f;
+            transform: scale(1.05);
+        }
+
         @keyframes zoomin {
             0% {
                 transform: scale(0);
@@ -111,5 +128,6 @@
     <p>This site <strong>requires JavaScript</strong> to function properly. <em>Enabling JavaScript is critical for your experience.</em></p>
     <p>Without it, you are missing out on essential features!</p>
     <a href="https://www.enable-javascript.com/" target="_blank">How to Enable JavaScript</a>
+    <a href="javascript:history.back()" class="go-back">Go Back</a>
 </body>
 </html>
