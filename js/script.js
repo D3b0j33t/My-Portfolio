@@ -1,4 +1,82 @@
-/*========== menu icon navbar ==========*/
+/*========== Disable Right-Click (Context Menu) ==========*/
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    alert('Right-click is disabled on this page.');
+});
+
+/*========== Disable Keyboard Shortcuts ==========*/
+document.addEventListener('keydown', function(e) {
+    // Disable F12 (Developer Tools)
+    if (e.code === "F12") {
+        e.preventDefault();
+        alert('Developer tools are disabled.');
+    }
+
+    // Disable Ctrl+Shift+I / Ctrl+Shift+C (Inspect Elements), Ctrl+U (View Source)
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.code === "KeyI" || e.code === "KeyC")) {
+        e.preventDefault();
+        alert('Inspecting elements is disabled.');
+    }
+
+    // Disable Ctrl+S (Save Page), Ctrl+P (Print Page), Ctrl+U (View Source)
+    if ((e.ctrlKey || e.metaKey) && (e.code === "KeyS" || e.code === "KeyP" || e.code === "KeyU")) {
+        e.preventDefault();
+        alert('Saving, printing, and viewing source are disabled.');
+    }
+
+    // Disable PrintScreen
+    if (e.key === "PrintScreen") {
+        alert("Screenshot functionality is disabled.");
+        preventScreenshot();
+        e.preventDefault();
+    }
+});
+
+/*========== Visual Disruption on PrintScreen ==========*/
+function preventScreenshot() {
+    // Create an overlay that disrupts the view for screenshots
+    let overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100vw';
+    overlay.style.height = '100vh';
+    overlay.style.background = 'rgba(0, 0, 0, 0.8)';
+    overlay.style.zIndex = '9999';
+    overlay.style.display = 'flex';
+    overlay.style.justifyContent = 'center';
+    overlay.style.alignItems = 'center';
+    overlay.style.color = '#fff';
+    overlay.style.fontSize = '24px';
+    overlay.innerText = 'Screenshot disabled!';
+
+    document.body.appendChild(overlay);
+
+    // Remove the overlay after 3 seconds
+    setTimeout(() => {
+        document.body.removeChild(overlay);
+    }, 3000);
+}
+
+/*========== Watermark Overlay to Deter Screenshots ==========*/
+function addWatermark() {
+    let watermark = document.createElement('div');
+    watermark.style.position = 'fixed';
+    watermark.style.bottom = '10px';
+    watermark.style.right = '10px';
+    watermark.style.fontSize = '20px';
+    watermark.style.color = 'rgba(255, 255, 255, 0.3)';
+    watermark.style.pointerEvents = 'none'; // Prevent interaction
+    watermark.style.zIndex = '9998';
+    watermark.innerText = 'Confidential - No Screenshots Allowed';
+
+    document.body.appendChild(watermark);
+}
+
+// Call the watermark function when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', addWatermark);
+
+/*========== Menu Icon Toggle for Navbar ==========*/
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 
@@ -7,14 +85,24 @@ menuIcon.onclick = () => {
     navbar.classList.toggle('active');
 };
 
-
-/*========== scroll sections active link ==========*/
+/*========== Scroll Sections Active Link ==========*/
 let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('header nav a');
 
-window.onscroll = () => {
+// Debounce function to improve scroll performance
+let debounce = (func, delay) => {
+    let timeout;
+    return function() {
+        let context = this, args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(context, args), delay);
+    };
+};
+
+window.onscroll = debounce(() => {
+    let top = window.scrollY;
+
     sections.forEach(sec => {
-        let top = window.scrollY;
         let offset = sec.offsetTop - 150;
         let height = sec.offsetHeight;
         let id = sec.getAttribute('id');
@@ -24,24 +112,19 @@ window.onscroll = () => {
                 links.classList.remove('active');
                 document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
             });
-        };
+        }
     });
 
+    /*========== Sticky Navbar ==========*/
+    let header = document.querySelector('.header');
+    header.classList.toggle('sticky', top > 100);
 
-/*========== sticky navbar ==========*/
-let header = document.querySelector('.header');
+    /*========== Remove Menu Icon Navbar on Click (Scroll) ==========*/
+    menuIcon.classList.remove('bx-x');
+    navbar.classList.remove('active');
+}, 100); // Debouncing scroll to 100ms delay
 
-header.classList.toggle('sticky', window.scrollY > 100);
-
-
-/*========== remove menu icon navbar when click navbar link (scroll) ==========*/
-menuIcon.classList.remove('bx-x');
-navbar.classList.remove('active');
-
-};
-
-
-/*========== swiper ==========*/
+/*========== Swiper Configuration ==========*/
 var swiper = new Swiper(".mySwiper", {
     slidesPerView: 1,
     spaceBetween: 50,
@@ -57,8 +140,7 @@ var swiper = new Swiper(".mySwiper", {
     },
 });
 
-
-/*========== dark light mode ==========*/
+/*========== Dark and Light Mode Toggle ==========*/
 let darkModeIcon = document.querySelector('#darkMode-icon');
 
 darkModeIcon.onclick = () => {
@@ -66,8 +148,7 @@ darkModeIcon.onclick = () => {
     document.body.classList.toggle('dark-mode');
 };
 
-
-/*========== scroll reveal ==========*/
+/*========== Scroll Reveal Animations ==========*/
 ScrollReveal({
     // reset: true,
     distance: '80px',
@@ -80,8 +161,7 @@ ScrollReveal().reveal('.home-img img, .services-container, .portfolio-box, .test
 ScrollReveal().reveal('.home-content h1, .about-img img', { origin: 'left' });
 ScrollReveal().reveal('.home-content h3, .home-content p, .about-content', { origin: 'right' });
 
-
-/*========== whatsapp message ==========*/
+/*========== WhatsApp Message Functionality ==========*/
 function sendMessage(event) {
     event.preventDefault();
 
@@ -89,62 +169,34 @@ function sendMessage(event) {
     const mobile = document.getElementById('mobile').value;
     const message = document.getElementById('message').value;
 
+    // Mobile number validation
     const mobileRegex = /^[0-9]{10}$/;
     if (!mobileRegex.test(mobile)) {
-        alert("Please give a valid Contact Number");
+        alert("Please provide a valid contact number.");
         return;
     }
     
     const encodedMessage = encodeURIComponent(`\nRespected Sir,\n\t\tI'm ${name}. ${message}\n\nBest Regards,\n${name}\nContact Number: ${mobile}`);
     
-    const phoneNumber = '+919835418245';
+    const phoneNumber = '+919835418245';  // Your WhatsApp number here
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
+    // Open WhatsApp chat
     window.open(whatsappURL, '_blank');
+
+    // Reset form
     document.getElementById('contact-form').reset();
 }
 
-
+/*========== Background Music Autoplay and Click Play ==========*/
 document.addEventListener('DOMContentLoaded', function () {
     const music = document.getElementById('background-music');
-             
+
+    // Try to auto-play music
     music.play().catch(() => {
+        // If autoplay fails, play on user interaction
         document.body.addEventListener('click', () => {
             music.play();
         });
     });
-});
-
-// Disable right-click context menu
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-    alert('You cannot do that as this site has robust security features');
-});
-
-// Disable keyboard shortcuts (Ctrl+P, Ctrl+S, Ctrl+Shift+I, etc.)
-document.addEventListener('keydown', function(e) {
-    // Disable F12 (Developer Tools)
-    if (e.key === "F12") {
-        e.preventDefault();
-    }
-
-    // Disable Ctrl+Shift+I / Ctrl+Shift+C (Inspect Elements)
-    if ((e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "C")) || 
-        (e.ctrlKey && e.key === "U")) { // Disable Ctrl+U (View Source)
-        e.preventDefault();
-    }
-
-    // Disable Ctrl+S (Save Page), Ctrl+P (Print Page) and Ctrl+C (Copy Text)
-    if (e.ctrlKey && (e.key === "S" || e.key === "P" || e.key === "C")) {
-        e.preventDefault();
-    }
-});
-
-// Disable screenshot (This is not foolproof)
-document.addEventListener('keydown', function(e) {
-    // Disable PrintScreen button
-    if (e.key === "PrintScreen") {
-        alert("You can't take Screenshots in this site");
-        e.preventDefault();
-    }
 });
