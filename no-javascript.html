@@ -2,8 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Required</title>
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+
+    <title>Debojeet Bhowmick</title>
+
+    <!-- favicon image png -->
+    <link rel="icon" href="images/favicon.png" type="image/png">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,21 +19,63 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f8f9fa;
+            background-color: #f0f8ff;
+            margin: 0;
+            color: #333;
         }
         .message-box {
             text-align: center;
-            border: 1px solid #ddd;
-            padding: 20px;
+            border: 2px solid #007bff;
+            padding: 30px;
             background-color: #fff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .cta {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+        }
+        .cta:hover {
+            background-color: #0056b3;
+        }
+        .note {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 20px;
+        }
+        .icon {
+            font-size: 4em;
+            color: #007bff;
         }
     </style>
 </head>
 <body>
     <div class="message-box">
-        <h1>OverSmart Huh?</h1>
-        <p>This site requires JavaScript to function properly. Please enable JavaScript in your browser settings to continue.</p>
-        <p><a href="/">Go back to the homepage</a></p>
+        <h1><span class="icon">⚠️</span> Oops!</h1>
+        <p><strong>It seems that JavaScript is disabled on your browser.</strong></p>
+        <p>This site <strong>requires JavaScript</strong> to function properly. <em>Don’t miss out on a better experience!</em></p>
+        <p>Enable JavaScript to unlock amazing features:</p>
+        <ul style="list-style: none; padding: 0;">
+            <li>🚀 Faster load times</li>
+            <li>🔒 Enhanced security</li>
+            <li>✨ Interactive content</li>
+        </ul>
+        <a href="javascript:void()" onclick="location.href='/'" class="cta">Go Back to the Homepage</a>
+        <p class="note">If you need help enabling JavaScript, <a href="https://www.enable-javascript.com/" target="_blank">click here</a>.</p>
     </div>
 </body>
 </html>
