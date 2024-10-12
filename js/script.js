@@ -26,9 +26,21 @@ document.addEventListener('keydown', function(e) {
 
     // Disable PrintScreen
     if (e.key === "PrintScreen") {
+        e.preventDefault();
         alert("Screenshot functionality is disabled.");
         preventScreenshot();
+    }
+
+    // Disable Windows + PrintScreen (for Windows)
+    if (e.code === "PrintScreen" && (e.ctrlKey || e.metaKey || e.key === "MetaLeft" || e.key === "MetaRight")) {
         e.preventDefault();
+        alert("Screenshots are disabled on this site.");
+    }
+
+    // Disable macOS screenshot shortcuts (Cmd + Shift + 4 or Cmd + Shift + 3)
+    if (e.metaKey && e.shiftKey && (e.code === "Digit3" || e.code === "Digit4")) {
+        e.preventDefault();
+        alert("Screenshots are disabled on this site.");
     }
 });
 
