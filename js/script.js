@@ -1,7 +1,7 @@
 /*========== Disable Right-Click (Context Menu) ==========*/
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
-    alert('Right-click is disabled on this page.');
+    alert('You are not allowed to do so as this page has robust security');
 });
 
 /*========== Disable Keyboard Shortcuts ==========*/
